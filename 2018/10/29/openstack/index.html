@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="HTML," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="HTML文件基本结构html中的标签一般都是成对出现的，分开始标签和结束标签，标签由英文尖括号&amp;lt;和&amp;gt;括起来。123456789&amp;lt;html&amp;gt;    &amp;lt;!-- &amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;称为根标签，所有的网页标签都在&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;中 --&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;!-- 定义">
-<meta name="keywords" content="HTML">
+<meta name="description" content="实验环境最近在折腾kolla部署容器化的openstack，遇到的坑实在是太多了，在虚拟机中把可能遇到的问题都查了一遍才敢部署到物理机上。但还是没搞明白为什么虚拟机中virt_type只能为qemu才可以创建instance。有兴趣的建议先在VMware Workstation中尝试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML基础">
-<meta property="og:url" content="http://yoursite.com/2018/10/25/html/index.html">
+<meta property="og:title" content="使用kolla部署openstack（一）">
+<meta property="og:url" content="http://yoursite.com/2018/10/29/openstack/index.html">
 <meta property="og:site_name" content="Crystalww">
-<meta property="og:description" content="HTML文件基本结构html中的标签一般都是成对出现的，分开始标签和结束标签，标签由英文尖括号&amp;lt;和&amp;gt;括起来。123456789&amp;lt;html&amp;gt;    &amp;lt;!-- &amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;称为根标签，所有的网页标签都在&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;中 --&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;!-- 定义">
+<meta property="og:description" content="实验环境最近在折腾kolla部署容器化的openstack，遇到的坑实在是太多了，在虚拟机中把可能遇到的问题都查了一遍才敢部署到物理机上。但还是没搞明白为什么虚拟机中virt_type只能为qemu才可以创建instance。有兴趣的建议先在VMware Workstation中尝试">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-28T11:47:35.179Z">
+<meta property="og:updated_time" content="2018-10-31T13:04:02.168Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML基础">
-<meta name="twitter:description" content="HTML文件基本结构html中的标签一般都是成对出现的，分开始标签和结束标签，标签由英文尖括号&amp;lt;和&amp;gt;括起来。123456789&amp;lt;html&amp;gt;    &amp;lt;!-- &amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;称为根标签，所有的网页标签都在&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;中 --&amp;gt;    &amp;lt;head&amp;gt;        &amp;lt;!-- 定义">
+<meta name="twitter:title" content="使用kolla部署openstack（一）">
+<meta name="twitter:description" content="实验环境最近在折腾kolla部署容器化的openstack，遇到的坑实在是太多了，在虚拟机中把可能遇到的问题都查了一遍才敢部署到物理机上。但还是没搞明白为什么虚拟机中virt_type只能为qemu才可以创建instance。有兴趣的建议先在VMware Workstation中尝试">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/25/html/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/29/openstack/"/>
 
 
 
 
 
-  <title>HTML基础 | Crystalww</title>
+  <title>使用kolla部署openstack（一） | Crystalww</title>
   
 
 
@@ -287,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/25/html/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/29/openstack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr Wu">
@@ -304,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTML基础</h1>
+          <h1 class="post-title" itemprop="name headline">使用kolla部署openstack（一）</h1>
         
 
         <div class="post-meta">
@@ -316,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-25T20:54:05+08:00">
-                2018-10-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-29T20:44:24+08:00">
+                2018-10-29
               </time>
             
 
@@ -326,28 +325,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网页相关/" itemprop="url" rel="index">
-                    <span itemprop="name">网页相关</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -376,81 +353,64 @@
       
 
       
-        <h2 id="HTML文件基本结构"><a href="#HTML文件基本结构" class="headerlink" title="HTML文件基本结构"></a>HTML文件基本结构</h2><p>html中的标签一般都是成对出现的，分开始标签和结束标签，标签由英文尖括号<code>&lt;</code>和<code>&gt;</code>括起来。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;html&gt;&lt;/html&gt;称为根标签，所有的网页标签都在&lt;html&gt;&lt;/html&gt;中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义文档的头部，头部元素有&lt;title&gt;、&lt;script&gt;、&lt;style&gt;、&lt;link&gt;、&lt;meta&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 网页的主要内容，如&lt;h1&gt;、&lt;p&gt;、&lt;a&gt;、&lt;img&gt;等 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h2 id="常用标签"><a href="#常用标签" class="headerlink" title="常用标签"></a>常用标签</h2><p>HTML语义化：根据内容的结构化（内容语义化），选择合适的标签（代码语义化），便于开发者阅读和写出更优雅的代码的同时，让浏览器的爬虫和机器很好的解析。</p>
-<p><code>&lt;hx&gt;</code>：标题标签一共有6个，并且依据重要性递减。<code>&lt;h1&gt;</code>为一级标题，是最高的等级。<code>&lt;h6&gt;</code>为六级标题。<br><br><code>&lt;h1&gt;标题文本&lt;/h1&gt;</code><br><br><code>&lt;em&gt;</code>：表示强调，默认用斜体表示。<br><br><code>&lt;strong&gt;</code>：表示更强烈的强调，用粗体表示。<br><br><code>&lt;span&gt;</code>：没有语义，作用是为了设置单独的样式。<br><br><code>&lt;q&gt;</code>：短文本引用，浏览器会对q标签自动添加双引号。<br><br><code>&lt;blockquote&gt;</code>：长文本引用。<br><br><code>&lt;br /&gt;</code>：回车换行。<br><br><code>&amp;nbsp;</code>：空格。<br><br><code>&lt;hr&gt;</code>：添加水平横线。<br><br><code>&lt;address&gt;</code>：地址信息。<br><br><code>&lt;code&gt;</code>：单行代码。如果是多行代码，可以使用<code>&lt;pre&gt;</code>标签。<br><br><code>&lt;pre&gt;</code>：被包围在pre元素中的文本通常会保留空格和换行符。<br></p>
-<p>无序列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;信息&lt;/li&gt;</span><br><span class="line">   ...</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
-<p>有序列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ol&gt;</span><br><span class="line">   &lt;li&gt;零基础学习html&lt;/li&gt;</span><br><span class="line">   ...</span><br><span class="line">&lt;/ol&gt;</span><br></pre></td></tr></table></figure></p>
-<p><code>&lt;div&gt;</code>：相当于一个容器，存放独立的逻辑部分。用id属性为<code>&lt;div&gt;</code>提供唯一的名称。</p>
-<p><code>&lt;a&gt;</code>标签作用：</p>
+        <h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>最近在折腾kolla部署容器化的openstack，遇到的坑实在是太多了，在虚拟机中把可能遇到的问题都查了一遍才敢部署到物理机上。但还是没搞明白为什么虚拟机中virt_type只能为qemu才可以创建instance。有兴趣的建议先在VMware Workstation中尝试<a id="more"></a>，处理器开启<code>虚拟化Intel VT-x/EPT</code>或<code>AMD-V/RVI(V)</code>，所有操作在root下进行。虚拟机配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">系统：CentOS 7</span><br><span class="line">内存：16GB</span><br><span class="line">处理器：4 </span><br><span class="line">硬盘：100GB</span><br><span class="line">网卡1：桥接模式</span><br><span class="line">网卡2：桥接模式</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改CentOS默认yum源"><a href="#修改CentOS默认yum源" class="headerlink" title="修改CentOS默认yum源"></a>修改CentOS默认yum源</h3><ul>
+<li>备份默认yum源<br><code>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</code></li>
+<li>下载阿里云的yum源配置文件到/etc/yum.repos.d/<br><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</code></li>
+<li>本地缓存服务器上的软件包信息<br><code>yum makecache</code></li>
+<li>更新<br><code>yum -y update</code></li>
+</ul>
+<h3 id="修改-pip-pip-conf（没有就创建一个）"><a href="#修改-pip-pip-conf（没有就创建一个）" class="headerlink" title="修改 ~/.pip/pip.conf（没有就创建一个）"></a>修改 ~/.pip/pip.conf（没有就创建一个）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>基本是按照<a href="https://docs.openstack.org/kolla-ansible/latest/user/quickstart.html" target="_blank" rel="noopener">OpenStack Docs的Quick Start</a>进行的（For development）。首先修改/etc/hostname和/etc/hosts（部署用到的每台主机都要改）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 安装pip并更新到最新</span><br><span class="line">yum install -y epel-release</span><br><span class="line">yum install -y python-pip</span><br><span class="line">pip install -U pip</span><br><span class="line"></span><br><span class="line"># 安装依赖</span><br><span class="line">yum install -y python-devel libffi-devel gcc openssl-devel libselinux-python</span><br><span class="line"></span><br><span class="line"># 安装ansible</span><br><span class="line">yum install -y ansible</span><br><span class="line"></span><br><span class="line"># 更新ansible到最新</span><br><span class="line">pip install -U ansible</span><br><span class="line"></span><br><span class="line"># 在ansible配置文件/etc/ansible/ansible.cfg中增加信息（可选）</span><br><span class="line">[defaults]</span><br><span class="line">host_key_checking=False</span><br><span class="line">pipelining=True</span><br><span class="line">forks=100</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 安装Kolla-ansible</span><br><span class="line">git clone https://github.com/openstack/kolla -b stable/rocky</span><br><span class="line">git clone https://github.com/openstack/kolla-ansible -b stable/rocky</span><br><span class="line"></span><br><span class="line"># 安装kolla和kolla-ansible的requirements</span><br><span class="line">pip install -r kolla/requirements.txt</span><br><span class="line">pip install -r kolla-ansible/requirements.txt</span><br><span class="line"></span><br><span class="line"># 把kolla-ansible的配置文件（globals.yml、passwords.yml）复制到/etc/kolla中</span><br><span class="line">mkdir -p /etc/kolla</span><br><span class="line">cp -r kolla-ansible/etc/kolla/* /etc/kolla</span><br><span class="line"></span><br><span class="line"># 复制（all-in-one、multinode）到当前目录下</span><br><span class="line">cp kolla-ansible/ansible/inventory/* .</span><br></pre></td></tr></table></figure>
+<h2 id="修改配置信息"><a href="#修改配置信息" class="headerlink" title="修改配置信息"></a>修改配置信息</h2><p>修改all-in-one如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[control]</span><br><span class="line">localhost       ansible_connection=local</span><br><span class="line"></span><br><span class="line">[network]</span><br><span class="line">localhost       ansible_connection=local</span><br><span class="line"></span><br><span class="line">[external-compute]</span><br><span class="line">localhost       ansible_connection=local</span><br><span class="line"></span><br><span class="line">[storage]</span><br><span class="line">localhost       ansible_connection=local</span><br><span class="line"></span><br><span class="line">[monitoring]</span><br><span class="line">localhost       ansible_connection=local</span><br><span class="line"></span><br><span class="line">[deployment]</span><br><span class="line">localhost       ansible_connection=local</span><br></pre></td></tr></table></figure></p>
+<p>检查配置文件信息是否正确<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible -i multinode all -m ping</span><br></pre></td></tr></table></figure></p>
+<p>生成随机密码，密码存放于<code>/etc/kolla/passwords.yml</code>中。修改此文件中<code>keystone_admin_password</code>字段密码为<code>admin</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kolla-ansible/tools/generate_passwords.py</span><br></pre></td></tr></table></figure></p>
+<p>修改/etc/kolla/globals.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">kolla_base_distro: &quot;centos&quot;</span><br><span class="line">kolla_install_type: &quot;source&quot;</span><br><span class="line">openstack_release: &quot;rocky&quot;</span><br><span class="line">openstack_release: &quot;master&quot;</span><br><span class="line"># 内网</span><br><span class="line">network_interface: &quot;eth0&quot;</span><br><span class="line"># 外网</span><br><span class="line">neutron_external_interface: &quot;eth1&quot;</span><br><span class="line"># 与内网网卡在同一子网中，且ip未被占用</span><br><span class="line">kolla_internal_vip_address: &quot;10.1.0.250&quot;</span><br><span class="line">nova_console: &quot;spice&quot;</span><br><span class="line">enable_horizon: &quot;yes&quot;</span><br><span class="line"># 如果是虚拟机，只能用qemu代替kvm，否则实例启动会卡在：Booting from Hard Disk...</span><br><span class="line">nova_compute_virt_type: &quot;kvm&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Bootstrap servers with kolla deploy dependencies</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i multinode bootstrap-servers</span><br><span class="line"></span><br><span class="line"># 对主机进行部署前检查（kolla_internal_vip_address如果被占用会失败）</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i multinode prechecks</span><br><span class="line"></span><br><span class="line"># 进行openstack部署</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i multinode deploy</span><br><span class="line"></span><br><span class="line"># 如果部署失败，销毁失败的部署</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i &lt;&lt;inventory-file&gt;&gt; destroy</span><br></pre></td></tr></table></figure>
+<p>部署成功后输入虚拟ip地址即可进入dashboard。</p>
+<p><strong>注意：</strong><br>kolla-ansible方式安装的openstack访问API（endpoint）与手动安装的不一样，在用openstack4j认证时获取不到信息，需要自己修改endpoint。下面操作在deploy上面进行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Install basic OpenStack CLI clients:</span><br><span class="line">pip install python-openstackclient python-glanceclient python-neutronclient</span><br><span class="line"></span><br><span class="line"># generate an openrc file</span><br><span class="line">cd kolla-ansible/tools</span><br><span class="line">./kolla-ansible post-deploy</span><br><span class="line">. /etc/kolla/admin-openrc.sh</span><br><span class="line"></span><br><span class="line"># 查看及修改端点信息</span><br><span class="line">[root@deploy tools]# openstack endpoint list</span><br><span class="line">[root@deploy tools]# openstack endpoint --help</span><br><span class="line">[root@deploy tools]# openstack endpoint set --help</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用两台虚拟机"><a href="#使用两台虚拟机" class="headerlink" title="使用两台虚拟机"></a>使用两台虚拟机</h2><p>一台虚拟机上写配置文件（deploy），给另一台虚拟机部署openstack环境。修改mutinode文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[control]</span><br><span class="line"># These hostname must be resolvable from your deployment host</span><br><span class="line">control2 ansible_user=root ansible_password=123 ansible_become=true</span><br><span class="line"></span><br><span class="line">[network]</span><br><span class="line">control2 ansible_user=root ansible_password=123 ansible_become=true</span><br><span class="line"></span><br><span class="line">[external-compute]</span><br><span class="line">control2 ansible_user=root ansible_password=123 ansible_become=true</span><br><span class="line"></span><br><span class="line">[monitoring]</span><br><span class="line">control2 ansible_user=root ansible_password=123 ansible_become=true</span><br><span class="line"></span><br><span class="line">[storage]</span><br><span class="line">control2 ansible_user=root ansible_password=123 ansible_become=true</span><br><span class="line"></span><br><span class="line">[deployment]</span><br><span class="line">localhost       ansible_connection=local ansible_become=true</span><br></pre></td></tr></table></figure></p>
+<p>如果有私有docker仓库，部署过程会更快，需要修改/etc/kolla/global.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker_registry: &quot;ip:port&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="报错信息整理"><a href="#报错信息整理" class="headerlink" title="报错信息整理"></a>报错信息整理</h2><p>部署过程报错：</p>
 <ul>
-<li>实现超链接</li>
-<li>链接email地址，使用mailto能让访问者便捷向网站管理者发送电子邮件。如果mailto后面同时有多个参数的话，第一个参数必须以“?”开头，后面的参数每一个都以“&amp;”分隔。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"目标网址"</span> <span class="attr">title</span>=<span class="string">"鼠标滑过显示的文本"</span>&gt;</span>链接显示的文本<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 在新的浏览器窗口中打开网页 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"目标网址"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>click here!<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 链接email地址 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:yy@xxx.com?subject=主题&amp;body=内容。"</span>&gt;</span>发送邮件给我<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>cannot uninstall xxx</p>
+<blockquote>
+<p>查看安装什么东西导致出错，然后pip install XXXX –ignore-installed xxx</p>
+</blockquote>
+</li>
+<li><p>waiting for nova-compute service up…</p>
+<blockquote>
+<p>kolla-ansible版本要与openstack_release版本（docker hub中查看tag）一致。pip安装的kolla-ansible（pip show kolla-ansible）对应最新的openstack稳定版（现在是rocky）</p>
+</blockquote>
+</li>
+<li><p>neutron容器启动报错：超时</p>
+<blockquote>
+<p>kolla部署过程会断开外网网卡导致下载不到docker镜像。提前下载镜像自建docker仓库或者network_interface对应的网卡能上网就行</p>
+</blockquote>
 </li>
 </ul>
-<p><code>&lt;img&gt;</code>标签：插入图片（可以是GIF，PNG，JPEG格式）。</p>
+<p>创建实例报错：</p>
 <ul>
-<li>src标识图像的位置；</li>
-<li>alt指定图像的描述性文本，当图像不可见时（下载不成功时），可看到该属性指定的文本；</li>
-<li>title提供在图像可见时对图像的描述(鼠标滑过图片时显示的文本)；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src = &quot;myimage.gif&quot; alt = &quot;My Image&quot; title = &quot;My Image&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<li><p>no valid hosts…</p>
+<blockquote>
+<p>可能是virt_type=kvm导致的，配置文件/etc/kolla/nova-compute/nova.conf中virt_type改为qemu，重启nova_compute容器</p>
+</blockquote>
+</li>
+<li><p>MessagingTimeout: Timed out waiting for a reply to message ID…</p>
+<blockquote>
+<p>docker restart $(docker ps -aq)</p>
+</blockquote>
 </li>
 </ul>
-<p>创建表格:</p>
-<ul>
-<li>table表格在没有添加css样式之前，在浏览器中显示是没有表格线的</li>
-<li><code>&lt;tbody&gt;…&lt;/tbody&gt;</code>：如果不加<code>&lt;thead&gt;&lt;tbody&gt;&lt;tfooter&gt;</code>,table表格加载完后才显示。加上这些表格结构，tbody包含行的内容下载完优先显示，不必等待表格结束后再显示。</li>
-<li><code>&lt;tr&gt;…&lt;/tr&gt;</code>：表格的一行，所以有几对tr，表格就有几行。</li>
-<li><code>&lt;td&gt;…&lt;/td&gt;</code>：表格的一个单元格，一行中包含几对<td>…</td>，说明一行中就有几列。</li>
-<li><code>&lt;th&gt;…&lt;/th&gt;</code>：表格表头，th标签中的文本默认为粗体居中显示。</li>
-<li>表格中列的个数，取决于一行中数据单元格的个数。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">  &lt;tbody&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">      &lt;th&gt;班级&lt;/th&gt;</span><br><span class="line">      &lt;th&gt;学生数&lt;/th&gt;</span><br><span class="line">      &lt;th&gt;平均成绩&lt;/th&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">      &lt;td&gt;一班&lt;/td&gt;</span><br><span class="line">      &lt;td&gt;30&lt;/td&gt;</span><br><span class="line">      &lt;td&gt;89&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">      &lt;td&gt;二班&lt;/td&gt;</span><br><span class="line">      &lt;td&gt;35&lt;/td&gt;</span><br><span class="line">      &lt;td&gt;85&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">  &lt;/tbody&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>为表格加入边框<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">table tr td,th&#123;border:1px solid #000;&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
-<p>为表格添加标题和摘要</p>
-<ul>
-<li>摘要的内容是不会在浏览器中显示出来的。它的作用是增加表格的可读性(语义化)，使搜索引擎更好的读懂表格内容，还可以使屏幕阅读器更好的帮助特殊用户读取表格内容。</li>
-<li>标题用以描述表格内容，标题的显示位置：表格上方。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;table summary=&quot;本表格记录2012年到2013年库存记录，记录包括U盘和耳机库存量&quot;&gt;</span><br><span class="line">  &lt;caption&gt;2012年到2013年库存记录&lt;/caption&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;产品名称 &lt;/th&gt;</span><br><span class="line">    &lt;th&gt;品牌 &lt;/th&gt;</span><br><span class="line">    &lt;th&gt;库存量（个） &lt;/th&gt;</span><br><span class="line">    &lt;th&gt;入库时间 &lt;/th&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;耳机 &lt;/td&gt;</span><br><span class="line">    &lt;td&gt;联想 &lt;/td&gt;</span><br><span class="line">    &lt;td&gt;500&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;2013-1-2&lt;/td&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;U盘 &lt;/td&gt;</span><br><span class="line">    &lt;td&gt;金士顿 &lt;/td&gt;</span><br><span class="line">    &lt;td&gt;120&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;2013-8-10&lt;/td&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>使用表单标签与用户交互</p>
-<ul>
-<li>所有表单控件（文本框、文本域、按钮、单选框、复选框等）都必须放在 <form></form> 标签之间，否则用户输入的信息提交不到服务器上。</li>
-<li>method ： 数据传送的方式（get/post）。</li>
-<li>action ：浏览者输入的数据被传送到的地方,比如一个PHP页面(save.php)。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=&quot;post&quot; action=&quot;save.php&quot;&gt;</span><br><span class="line">    &lt;label for=&quot;username&quot;&gt;用户名:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;</span><br><span class="line">    &lt;label for=&quot;pass&quot;&gt;密码:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;password&quot; name=&quot;pass&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>文本输入框</p>
-<ul>
-<li>当type=”text”时，输入框为文本输入框；当type=”password”时, 输入框为密码输入框。</li>
-<li>name：为文本框命名</li>
-<li>value：为文本输入框设置默认值。(一般起到提示作用)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text/password&quot; name=&quot;名称&quot; value=&quot;文本&quot; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>文本域：支持多行文本输入。在css中col可用width、row用height来代替。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea  rows=&quot;行数&quot; cols=&quot;列数&quot;&gt;文本&lt;/textarea&gt;</span><br></pre></td></tr></table></figure></p>
-<p>单选/复选框</p>
-<ul>
-<li>当type=”radio”时，控件为单选框；当type=”checkbox”时，控件为复选框。</li>
-<li>value：提交数据到服务器的值。</li>
-<li>name：为控件命名</li>
-<li>当设置 checked=”checked” 时，该选项被默认选中</li>
-<li>同一组的单选按钮，name 取值一定要一致，这样同一组的单选按钮才可以起到单选的作用。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;radio/checkbox&quot; value=&quot;值&quot; name=&quot;名称&quot; checked=&quot;checked&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>下拉列表框</p>
-<ul>
-<li>设置selected=”selected”属性，则该选项被默认选中。</li>
-<li>在<code>&lt;select&gt;</code>标签中设置multiple=”multiple”属性可以实现多选功能。</li>
-<li>在windows下进行多选时按下Ctrl键同时进行单击（在Mac下使用Command+单击）可以选择多个选项。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;save.php&quot; method=&quot;post&quot; &gt;</span><br><span class="line">    &lt;label&gt;爱好:&lt;/label&gt;</span><br><span class="line">    &lt;select&gt;</span><br><span class="line">      &lt;option value=&quot;向服务器提交的值&quot;&gt;显示的值&lt;/option&gt;</span><br><span class="line">      &lt;option value=&quot;旅游&quot;&gt;旅游&lt;/option&gt;</span><br><span class="line">      &lt;option value=&quot;运动&quot;&gt;运动&lt;/option&gt;</span><br><span class="line">      &lt;option value=&quot;购物&quot; selected=&quot;selected&quot;&gt;购物&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>提交按钮：提交表单信息到服务器。<br><br><code>&lt;input   type=&quot;submit&quot;   value=&quot;提交&quot;&gt;</code></p>
-<p>重置按钮：重置表单信息。<br><br><code>&lt;input type=&quot;reset&quot; value=&quot;重置&quot;&gt;</code></p>
-<p>form表单中的label标签</p>
-<ul>
-<li>不会向用户呈现任何特殊效果</li>
-<li>作用是为鼠标用户改进可用性。当用户单击选中该label标签时，自动选中和该label标签相关连的表单控件。<br><code>&lt;label for=&quot;控件id名称&quot;&gt;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">   &lt;label for=&quot;male&quot;&gt;男&lt;/label&gt;</span><br><span class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; id=&quot;male&quot; /&gt;</span><br><span class="line">  &lt;br /&gt;</span><br><span class="line">  &lt;label for=&quot;female&quot;&gt;女&lt;/label&gt;</span><br><span class="line">  &lt;input type=&quot;radio&quot; name=&quot;gender&quot; id=&quot;female&quot; /&gt;</span><br><span class="line">  &lt;br /&gt;</span><br><span class="line">  &lt;label for=&quot;email&quot;&gt;输入你的邮箱地址&lt;/label&gt;</span><br><span class="line">  &lt;input type=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;Enter email&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>如果需要访问外部网络，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">供应商类型：Flat</span><br><span class="line">物理网络：physnet1 （/etc/kolla/neutron-server/ml2_conf.ini中flat_networks字段值）</span><br><span class="line">添加内部接口（子网网关）</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://docs.openstack.org/kolla-ansible/latest/user/quickstart.html#kolla-globals-yml" target="_blank" rel="noopener">OpenStack Docs: Quick Start</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1073885" target="_blank" rel="noopener">Docker容器化部署运维OpenStack和Ceph</a></li>
+<li><a href="https://blog.csdn.net/persistvonyao/article/details/80229602" target="_blank" rel="noopener">CentOS7单节点部署OpenStack-Pike(使用kolla-ansible)</a></li>
+<li><a href="http://blog.51cto.com/yuweibing/1976882" target="_blank" rel="noopener">Openstack之ubuntu16使用kolla部署实验</a></li>
+</ol>
 
       
     </div>
@@ -466,12 +426,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/HTML/" rel="tag"><i class="fa fa-tags"></i> HTML</a>
-          
-        </div>
-      
 
       
       
@@ -481,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/15/blog/" rel="next" title="Hexo搭建个人博客">
-                <i class="fa fa-chevron-left"></i> Hexo搭建个人博客
+              <a href="/2018/10/25/html/" rel="next" title="HTML基础">
+                <i class="fa fa-chevron-left"></i> HTML基础
               </a>
             
           </div>
@@ -490,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/29/openstack/" rel="prev" title="使用kolla部署openstack（一）">
-                使用kolla部署openstack（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -644,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML文件基本结构"><span class="nav-number">1.</span> <span class="nav-text">HTML文件基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用标签"><span class="nav-number">2.</span> <span class="nav-text">常用标签</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验环境"><span class="nav-number">1.</span> <span class="nav-text">实验环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改CentOS默认yum源"><span class="nav-number">1.1.</span> <span class="nav-text">修改CentOS默认yum源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-pip-pip-conf（没有就创建一个）"><span class="nav-number">1.2.</span> <span class="nav-text">修改 ~/.pip/pip.conf（没有就创建一个）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置信息"><span class="nav-number">3.</span> <span class="nav-text">修改配置信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">4.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用两台虚拟机"><span class="nav-number">5.</span> <span class="nav-text">使用两台虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错信息整理"><span class="nav-number">6.</span> <span class="nav-text">报错信息整理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
