@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Crystalww">
 <meta property="og:description" content="在使用kolla部署openstack时要下载很多镜像，部署时间长短容易受网速影响。提前下载所有镜像或在第一次部署完成下载所有镜像后把镜像上传到本地私有docker仓库，可以加快后面再次部署需要的时间。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-03T03:49:41.502Z">
+<meta property="og:updated_time" content="2018-11-14T00:49:04.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建docker仓库">
 <meta name="twitter:description" content="在使用kolla部署openstack时要下载很多镜像，部署时间长短容易受网速影响。提前下载所有镜像或在第一次部署完成下载所有镜像后把镜像上传到本地私有docker仓库，可以加快后面再次部署需要的时间。">
@@ -382,6 +382,7 @@
 <li>查看你当前的内核版本<br><code>uname -r</code></li>
 <li>安装 Docker<br><code>yum -y install docker</code></li>
 <li>启动 Docker 后台服务<br><code>service docker start</code></li>
+<li>设置开机自启动<br><code>systemctl enable docker</code></li>
 <li>测试运行 hello-world<br>由于本地没有hello-world这个镜像，所以会下载一个hello-world的镜像，并在容器内运行。<br><code>docker run hello-world</code></li>
 </ul>
 <h2 id="搭建本地仓库"><a href="#搭建本地仓库" class="headerlink" title="搭建本地仓库"></a>搭建本地仓库</h2><ul>
