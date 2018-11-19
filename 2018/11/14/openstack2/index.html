@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="openstack," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在部署好openstack后需要镜像来创建实例，CentOS、Ubuntu等系统有官方维护的镜像，windows系统的镜像则需要自己制作。下面是我在CentOS7上制作XP系统和win7系统的记录。">
+<meta name="keywords" content="openstack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openstack镜像操作">
+<meta property="og:url" content="http://yoursite.com/2018/11/14/openstack2/index.html">
+<meta property="og:site_name" content="Crystalww">
+<meta property="og:description" content="在部署好openstack后需要镜像来创建实例，CentOS、Ubuntu等系统有官方维护的镜像，windows系统的镜像则需要自己制作。下面是我在CentOS7上制作XP系统和win7系统的记录。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/openstack2/xp.png">
+<meta property="og:updated_time" content="2018-11-19T13:58:21.642Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="openstack镜像操作">
+<meta name="twitter:description" content="在部署好openstack后需要镜像来创建实例，CentOS、Ubuntu等系统有官方维护的镜像，windows系统的镜像则需要自己制作。下面是我在CentOS7上制作XP系统和win7系统的记录。">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/14/openstack2/xp.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/14/openstack2/"/>
+
+
+
+
+
+  <title>openstack镜像操作 | Crystalww</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crystalww</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/openstack2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystalww">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">openstack镜像操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-14T10:56:25+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenStack/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenStack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在部署好openstack后需要镜像来创建实例，CentOS、Ubuntu等系统有<a href="https://docs.openstack.org/image-guide/obtain-images.html" target="_blank" rel="noopener">官方维护的镜像</a>，windows系统的镜像则需要自己制作。下面是我在CentOS7上制作XP系统和win7系统的记录。<br><a id="more"></a></p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>关闭selinux</p>
+<blockquote>
+<p>查看selinux状态：<code>sestatus</code><br>临时关闭：<code>setenforce 0</code><br>永久关闭：<code>vi /etc/selinux/config</code>，设置<code>SELINUX=disabled</code><br>显示当前SELinux的应用模式（强制、执行还是停用）：<code>getenforce</code><br>检测系统是否支持KVM：<code>egrep -o &#39;(vmx|svm)&#39; /proc/cpuinfo</code></p>
+</blockquote>
+<p>关闭防火墙</p>
+<blockquote>
+<p>systemctl status firewalld<br>systemctl stop firewalld<br>systemctl disable firewalld</p>
+</blockquote>
+<p>安装必要的软件</p>
+<blockquote>
+<p>yum install -y virt-install virt-manager libvirt qemu-kvm tree</p>
+</blockquote>
+<p>修改/etc/libvirt/qemu.conf</p>
+<blockquote>
+<p>vnc_listen =”0.0.0.0”</p>
+</blockquote>
+<p>开启libvirtd</p>
+<blockquote>
+<p>systemctl start libvirtd<br>systemctl enable libvirtd</p>
+</blockquote>
+<p>创建目录，便于合理存储资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@dep centos]# mkdir -p /var/lib/libvirt/images/&#123;iso,virtual&#125;</span><br><span class="line"></span><br><span class="line">[root@dep centos]# tree /var/lib/libvirt/images/</span><br><span class="line">/var/lib/libvirt/images/</span><br><span class="line">├── iso</span><br><span class="line">└── virtual</span><br></pre></td></tr></table></figure></p>
+<p>创建空磁盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@dep centos]# cd /var/lib/libvirt/</span><br><span class="line">[root@dep libvirt]# qemu-img create -f qcow2 images/virtual/winxp.qcow2 10G</span><br><span class="line">[root@dep libvirt]# qemu-img create -f qcow2 images/virtual/win7_x64.qcow2 10G</span><br></pre></td></tr></table></figure></p>
+<p>把xp系统和Virtio的iso镜像上传到服务器中</p>
+<blockquote>
+<p>window和centos系统间传文件可以用<a href="https://winscp.net/eng/download.php" target="_blank" rel="noopener"><code>winscp</code></a>工具。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@dep libvirt]# tree images/</span><br><span class="line">images/</span><br><span class="line">├── iso</span><br><span class="line">│   ├── virtio-win-0.1.126_x86.vfd</span><br><span class="line">│   ├── virtio-win-0.1.141.iso</span><br><span class="line">│   ├── win7_professional_x64.iso</span><br><span class="line">│   └── zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso</span><br><span class="line">└── virtual</span><br><span class="line">    ├── win7_x64.qcow2</span><br><span class="line">    └── winxp.qcow2</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="制作xp系统"><a href="#制作xp系统" class="headerlink" title="制作xp系统"></a>制作xp系统</h2><p>官方给的是windows server2012的封装，照着它的顺序做，Boot Option里面没有系统镜像，这里参考了<a href="https://cloud-atlas.readthedocs.io/zh_CN/latest/c04/p02_install_first_kvm_guest_os.html" target="_blank" rel="noopener">《4.2 安装第一个KVM虚拟化Guest操作系统》</a>。XP的安装程序只支持从软盘加载驱动程序，因此需要一个软盘的镜像文件，在KVM启动的时候进行加载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@test centos]# virt-install --connect qemu:///system \</span><br><span class="line">--name winxp --ram 2048 --vcpus 2 \</span><br><span class="line">--network network=default,model=virtio \</span><br><span class="line">--disk path=images/virtual/winxp.qcow2,format=qcow2,device=disk,bus=virtio \</span><br><span class="line">--disk path=images/iso/virtio-win-0.1.126_x86.vfd,device=floppy \</span><br><span class="line">--disk path=images/iso/zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso,device=cdrom \</span><br><span class="line">--disk path=images/iso/virtio-win-0.1.141.iso,device=cdrom \</span><br><span class="line">--boot cdrom,hd,menu=on \</span><br><span class="line">--graphics vnc,listen=0.0.0.0 --noautoconsole \</span><br><span class="line">--os-type windows --os-variant winxp</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><code>--boot</code>选项可以通过<code>man virt-install</code>查询到。它指定机器的启动顺序，<code>cdrom</code>是光驱，<code>hd</code>为硬盘，<code>menu</code>是<code>bios boot menu</code>。<br><code>--graphics vnc</code>这一行表示可以用vnc远程连接</p>
+</blockquote>
+<ul>
+<li><p>获取vnc端口号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@ocata mouri]# virsh vncdisplay winxp</span><br><span class="line">:0</span><br><span class="line"></span><br><span class="line">[root@dep centos]# virsh domdisplay winxp</span><br><span class="line">vnc://localhost:0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用vncviewer连接，输入centos的ip+端口号，如我的为：192.168.89.111:0。</p>
+</li>
+</ul>
+<p>如果centos是图形界面的，也可以用virt-manager和virt-viewer来安装系统。下面的命令也可用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 若本机不支持虚拟化，请将virt-type选项更改为qemu</span><br><span class="line">[root@ocata libvirt]# virt-install --virt-type kvm \</span><br><span class="line">--name winxp --ram 2048 --vcpus 2 \</span><br><span class="line">--network network=default,model=virtio \</span><br><span class="line">--disk path=images/virtual/winxp.qcow2,format=qcow2,device=disk,bus=virtio \</span><br><span class="line">--disk path=images/iso/virtio-win-0.1.126_x86.vfd,device=floppy \</span><br><span class="line">--disk path=images/iso/zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso,device=cdrom \</span><br><span class="line">--disk path=images/iso/virtio-win-0.1.141.iso,device=cdrom \</span><br><span class="line">--os-type=windows --os-variant=winxp \</span><br><span class="line">--graphics vnc,listen=0.0.0.0 --noautoconsole</span><br></pre></td></tr></table></figure></p>
+<p>安装过程可能会重启，我的关机之后没有自己启动，需要手动开启，再用VNC Viewer连接。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@ocata libvirt]# virsh list --all</span><br><span class="line"> Id    名称                         状态</span><br><span class="line">----------------------------------------------------</span><br><span class="line"> -     winxp                          关闭</span><br><span class="line"></span><br><span class="line">[root@ocata libvirt]# virsh start winxp</span><br><span class="line">域 winxp 已开</span><br></pre></td></tr></table></figure></p>
+<p>安装完成进入计算机管理把驱动程序安装好，选择驱动程序镜像所在盘自动安装即可。<br><img src="/2018/11/14/openstack2/xp.png" alt="xp"><br>下一步就是安装<a href="https://cloudbase.it/cloudbase-init/" target="_blank" rel="noopener">cloudbase-init</a>，问题是怎么把文件传入到winxp系统中，可以参考<a href="https://www.jianshu.com/p/c154f43b7fac" target="_blank" rel="noopener">虚拟机镜像管理工具– Libguestfs</a>。<br>但是centos7中guestmount已经不支持NTFS的镜像了<a href="https://forums.urbackup.org/t/mount-image-is-not-working-under-rhel-7-3/3127/2" target="_blank" rel="noopener">(mount: unsupported filesystem type” with NTFS in RHEL ≥ 7.2)</a>。也可以在xp系统中上网下载，但是IE半天打不开网页，给换了世界之窗的浏览器。<br>打开IE–&gt;工具–&gt;Internet选项–&gt;高级–&gt;勾选使用TLS1.0。然后输入世界之窗浏览器的网址下载。</p>
+<blockquote>
+<p>安装过程中选项：<br>Username：Administrator；<br>Serial port for logging：COM1；<br>勾选Run Cloudbase-init service as LocalSystem；<br>耐心等待安装完成</p>
+</blockquote>
+<p>并没有Run Sysprep与Shutdown可以勾选，用安装镜像中的support–&gt;tools下的sysprep封装，但是没有可用的密钥，到这一步封装进行不下去了。</p>
+<h2 id="win7系统制作"><a href="#win7系统制作" class="headerlink" title="win7系统制作"></a>win7系统制作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@test centos]# virt-install --connect qemu:///system \</span><br><span class="line">--name win7_x64 --ram 2048 --vcpus 2 \</span><br><span class="line">--network network=default,model=virtio \</span><br><span class="line">--disk path=images/virtual/win7_x64.qcow2,format=qcow2,device=disk,bus=virtio \</span><br><span class="line">--disk path=images/iso/win7_professional_x64.iso,device=cdrom  \</span><br><span class="line">--disk path=images/iso/virtio-win.iso,device=cdrom \</span><br><span class="line">--boot cdrom,hd,menu=on \</span><br><span class="line">--graphics vnc,listen=0.0.0.0 --noautoconsole \</span><br><span class="line">--os-type windows --os-variant win7</span><br></pre></td></tr></table></figure>
+<p>也可用下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 若本机不支持虚拟化，请将&lt;virt-type&gt;选项更改为&lt;qemu&gt;</span><br><span class="line">[root@test centos]# virt-install --virt-type kvm \</span><br><span class="line">--name win7_x64 --ram 2048 --vcpus 2 \</span><br><span class="line">--network network=default,model=virtio \</span><br><span class="line">--disk path=images/virtual/win7_x64.qcow2,format=qcow2,device=disk,bus=virtio \</span><br><span class="line">--disk path=images/iso/win7_professional_x64.iso,device=cdrom  \</span><br><span class="line">--disk path=images/iso/virtio-win.iso,device=cdrom \</span><br><span class="line">--boot cdrom,hd,menu=on \</span><br><span class="line">--graphics vnc,listen=0.0.0.0 --noautoconsole</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>现在安装</li>
+<li>自定义</li>
+<li>加载驱动程序，选择E盘（virtio所在磁盘）下的visitor对应的系统的amd64或x86文件夹，加载驱动完成即可检测到磁盘</li>
+<li>安装完成后，会自动重启，设置账户及密码，进入桌面系统。此时，虚拟机还需要安装网卡等驱动，在设备管理器中更新驱动程序，选择VirtIO驱动位置更新即可。</li>
+</ol>
+</blockquote>
+<p>win7鼠标重影，先关机，找到配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@dep libvirt]# find / -name &quot;win7.xml&quot;</span><br><span class="line">/etc/libvirt/qemu/win7.xml</span><br></pre></td></tr></table></figure></p>
+<p>添加usbtablet<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&apos;tablet&apos; bus=&apos;usb&apos;&gt;</span><br><span class="line">  &lt;address type=&apos;usb&apos; bus=&apos;0&apos; port=&apos;1&apos;/&gt;</span><br><span class="line">&lt;/input&gt;</span><br><span class="line">&lt;input type=&apos;mouse&apos; bus=&apos;ps2&apos;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后<a href="http://www.itshuji.com/technical-article/1774.html" target="_blank" rel="noopener">导入配置</a><code>[root@dep libvirt]# virsh define /etc/libvirt/qemu/win7.xml</code>，重启使配置生效。</p>
+<p>安装cloudinit，完成后勾选Run Sysprep与Shutdown，点击Finish；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 使虚拟机脱离libvirt管理</span><br><span class="line">[root@dep libvirt]# virsh undefine win7_x64</span><br><span class="line"># libguestfs-tools的安装</span><br><span class="line">[root@dep libvirt]# yum -y install libguestfs-tools</span><br><span class="line"># 消除映像空洞</span><br><span class="line">[root@dep libvirt]# virt-sparsify -x images/virtual/winxp.qcow2 --convert qcow2 images/virtual/winxp.qcow2.tmp</span><br><span class="line"></span><br><span class="line">[root@dep libvirt]# virt-sparsify -x images/virtual/win7_x64.qcow2 --convert qcow2 images/virtual/win7_x64.qcow2.tmp</span><br><span class="line"># 压缩映像</span><br><span class="line">[root@dep libvirt]# qemu-img convert -c -p -O qcow2 images/virtual/winxp.qcow2.tmp images/virtual/winxp.img</span><br><span class="line"></span><br><span class="line">[root@dep libvirt]# qemu-img convert -c -p -O qcow2 images/virtual/win7_x64.qcow2.tmp images/virtual/win7_x64.img</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 将映像重新加入libvirt管理</span><br><span class="line">virt-install --name win7_x64 \</span><br><span class="line">  --virt-type kvm \</span><br><span class="line">  --ram 2048 \</span><br><span class="line">  --vcpus=2 \</span><br><span class="line">  --network network=default \</span><br><span class="line">  --graphics vnc,listen=0.0.0.0 --noautoconsole \</span><br><span class="line">  --import \</span><br><span class="line">  --disk images/virtual/win7_x64.qcow2,format=qcow2</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 查看网络</span><br><span class="line">virsh net-list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 列出机器所有已安装的虚拟机</span><br><span class="line">virsh list --all</span><br><span class="line">    </span><br><span class="line"><span class="meta">#</span> 启动虚拟机</span><br><span class="line">virsh start ubuntu</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 关闭虚拟机</span><br><span class="line">virsh shutdown ubuntu</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 重启虚拟机</span><br><span class="line">virsh reboot ubuntu</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 删除虚拟机和创建的镜像文件</span><br><span class="line">virsh destroy winxp</span><br><span class="line">virsh undefine winxp</span><br><span class="line">rm winxp.qcow2</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h2><blockquote>
+<p>1 <a href="https://blog.csdn.net/qq_21398167/article/details/47777113" target="_blank" rel="noopener">（virt-install）ERROR Network not found: no network with matching name ‘default’</a></p>
+<ul>
+<li>查找与<code>network</code>和<code>libvirt</code>有关的<code>default.xml</code><br><code>[root@ocata libvirt]# find / -name &quot;default.xml&quot;</code></li>
+<li>从XML文件中定义一个网络<br><code>[root@ocata libvirt]# virsh net-define /usr/share/libvirt/networks/default.xml</code></li>
+<li>启动<code>default</code>网络<br><code>[root@ocata libvirt]# virsh net-start default</code></li>
+<li>查看网络是否启动成功<br><code>[root@ocata libvirt]# virsh net-list</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>2 centos中<code>virsh vncdisplay winxp</code>返回了vnc端口号，但是物理机中VNC Viewer连接不了centos中的winxp</p>
+<ul>
+<li><a href="http://blog.51cto.com/13520705/2055045" target="_blank" rel="noopener">关闭centos中的selinux和防火墙</a>，去掉<code>/etc/libvirt/qemu.conf</code>中<code>#vnc_listen = &quot;0.0.0.0&quot;</code>的注释。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>3 制作win7镜像时通过virt-viewer看到并没有进入安装程序，提示”No bootable device”</p>
+<ul>
+<li>原因是没有指定光盘启动，可以通过virt-manager工具配置；也可以加上–boot参数，同时如果有多个iso镜像，系统安装包镜像参数要用<code>--disk path=/path/to/iso,device=cdrom</code>的形式。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="镜像操作"><a href="#镜像操作" class="headerlink" title="镜像操作"></a>镜像操作</h2><p>想知道通过horizon上传的镜像存哪去了，可以查看glance的配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]# cat /etc/kolla/glance-api/glance-api.conf | grep image</span><br><span class="line">filesystem_store_datadir = /var/lib/glance/images/</span><br></pre></td></tr></table></figure></p>
+<p>通过<code>[root@centos ~]# docker inspect glance_api</code>查看”Mounts”字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&quot;Mounts&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;Source&quot;: &quot;/etc/localtime&quot;,</span><br><span class="line">                &quot;Destination&quot;: &quot;/etc/localtime&quot;,</span><br><span class="line">                &quot;Mode&quot;: &quot;ro&quot;,</span><br><span class="line">                &quot;RW&quot;: false,</span><br><span class="line">                &quot;Propagation&quot;: &quot;rprivate&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;Name&quot;: &quot;glance&quot;,</span><br><span class="line">                &quot;Source&quot;: &quot;/var/lib/docker/volumes/glance/_data&quot;,</span><br><span class="line">                &quot;Destination&quot;: &quot;/var/lib/glance&quot;,</span><br><span class="line">                &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">                &quot;Mode&quot;: &quot;rw&quot;,</span><br><span class="line">                &quot;RW&quot;: true,</span><br><span class="line">                &quot;Propagation&quot;: &quot;rprivate&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            ...</span><br></pre></td></tr></table></figure></p>
+<p>可以看到容器中存放image的目录对应的本地目录，查看本地目录下的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]# ls -lh /var/lib/docker/volumes/glance/_data/images/</span><br><span class="line">total 29G</span><br><span class="line">-rw-r-----. 1 42415 42415 5.1G Nov 12 18:40 058f6740-3cde-4d4e-826c-416cab9bdf06</span><br><span class="line">-rw-r-----. 1 42415 42415 1.7G Nov 12 20:30 2c5f7617-506b-4b4e-bafe-ec180b77f9e3</span><br><span class="line">-rw-r-----. 1 42415 42415 8.3G Nov 12 20:08 36ebf445-d410-4c30-8650-f46a814f10b3</span><br><span class="line">-rw-r-----. 1 42415 42415 4.4G Nov 11 20:31 60b6654a-b342-4f5e-80df-0b2cd1a7b51d</span><br><span class="line">-rw-r-----. 1 42415 42415  13M Nov  7 16:38 63f0a9f8-7f4c-4243-954e-00446de8a70c</span><br><span class="line">-rw-r-----. 1 42415 42415 2.0G Nov 14 10:06 8e7ebf4e-c2e8-47dc-9d24-d5376946ee43</span><br><span class="line">-rw-r-----. 1 42415 42415 5.3G Nov 11 20:50 98c6b078-6aa3-4759-8013-ad060a0cffe3</span><br><span class="line">-rw-r-----. 1 42415 42415 1.8G Nov  7 16:43 fbef4306-061b-486b-ab44-c567fc2aac10</span><br></pre></td></tr></table></figure></p>
+<p>由于我是用部署机（deploy）给另一台机器部署openstatck，所以在deploy上操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">[root@dep ~]# . /etc/kolla/admin-openrc.sh </span><br><span class="line"></span><br><span class="line"># 查看镜像列表</span><br><span class="line">[root@dep ~]# glance image-list</span><br><span class="line">+--------------------------------------+----------------+</span><br><span class="line">| ID                                   | Name           |</span><br><span class="line">+--------------------------------------+----------------+</span><br><span class="line">| 8e7ebf4e-c2e8-47dc-9d24-d5376946ee43 | centos6.5      |</span><br><span class="line">| 60b6654a-b342-4f5e-80df-0b2cd1a7b51d | centos7        |</span><br><span class="line">| 63f0a9f8-7f4c-4243-954e-00446de8a70c | cirros         |</span><br><span class="line">| 36ebf445-d410-4c30-8650-f46a814f10b3 | kali           |</span><br><span class="line">| fbef4306-061b-486b-ab44-c567fc2aac10 | metasploitable |</span><br><span class="line">| 058f6740-3cde-4d4e-826c-416cab9bdf06 | ubuntu16.04    |</span><br><span class="line">| 98c6b078-6aa3-4759-8013-ad060a0cffe3 | win7           |</span><br><span class="line">| 2c5f7617-506b-4b4e-bafe-ec180b77f9e3 | winxp          |</span><br><span class="line">+--------------------------------------+----------------+</span><br><span class="line"></span><br><span class="line"># 查看cirros镜像详细信息（[root@dep ~]# openstack image show cirros）</span><br><span class="line">[root@dep ~]# glance image-show 63f0a9f8-7f4c-4243-954e-00446de8a70c</span><br><span class="line">+------------------+--------------------------------------+</span><br><span class="line">| Property         | Value                                |</span><br><span class="line">+------------------+--------------------------------------+</span><br><span class="line">| checksum         | ee1eca47dc88f4879d8a229cc70a07c6     |</span><br><span class="line">| container_format | bare                                 |</span><br><span class="line">| created_at       | 2018-11-07T08:38:10Z                 |</span><br><span class="line">| disk_format      | qcow2                                |</span><br><span class="line">| id               | 63f0a9f8-7f4c-4243-954e-00446de8a70c |</span><br><span class="line">| min_disk         | 0                                    |</span><br><span class="line">| min_ram          | 0                                    |</span><br><span class="line">| name             | cirros                               |</span><br><span class="line">| owner            | 74615a486948450092e5dd0ba9e077e9     |</span><br><span class="line">| protected        | False                                |</span><br><span class="line">| size             | 13287936                             |</span><br><span class="line">| status           | active                               |</span><br><span class="line">| tags             | []                                   |</span><br><span class="line">| updated_at       | 2018-11-07T08:38:10Z                 |</span><br><span class="line">| virtual_size     | Not available                        |</span><br><span class="line">| visibility       | public                               |</span><br><span class="line">+------------------+--------------------------------------+</span><br><span class="line"></span><br><span class="line"># 下载cirros镜像到/home目录下</span><br><span class="line">[root@dep ~]# glance image-download --file /home/test.img 63f0a9f8-7f4c-4243-954e-00446de8a70c</span><br><span class="line"></span><br><span class="line"># 查看下载镜像的大小</span><br><span class="line">[root@dep ~]# du -sh /home/test.img </span><br><span class="line">13M     /home/test.img</span><br><span class="line"></span><br><span class="line"># 上传镜像</span><br><span class="line">[root@dep ~]# glance image-create --name &quot;test&quot; --disk-format qcow2 --container-format bare --progress &lt; /home/test.img </span><br><span class="line">[=============================&gt;] 100%</span><br><span class="line">+------------------+--------------------------------------+</span><br><span class="line">| Property         | Value                                |</span><br><span class="line">+------------------+--------------------------------------+</span><br><span class="line">| checksum         | ee1eca47dc88f4879d8a229cc70a07c6     |</span><br><span class="line">| container_format | bare                                 |</span><br><span class="line">| created_at       | 2018-11-14T03:56:24Z                 |</span><br><span class="line">| disk_format      | qcow2                                |</span><br><span class="line">| id               | b5ca651f-b45e-4269-b7c9-ea671744fb85 |</span><br><span class="line">| min_disk         | 0                                    |</span><br><span class="line">| min_ram          | 0                                    |</span><br><span class="line">| name             | test                                 |</span><br><span class="line">| owner            | 74615a486948450092e5dd0ba9e077e9     |</span><br><span class="line">| protected        | False                                |</span><br><span class="line">| size             | 13287936                             |</span><br><span class="line">| status           | active                               |</span><br><span class="line">| tags             | []                                   |</span><br><span class="line">| updated_at       | 2018-11-14T03:56:25Z                 |</span><br><span class="line">| virtual_size     | Not available                        |</span><br><span class="line">| visibility       | shared                               |</span><br><span class="line">+------------------+--------------------------------------+</span><br><span class="line"></span><br><span class="line"># 删除镜像</span><br><span class="line">[root@dep ~]# glance image-delete b5ca651f-b45e-4269-b7c9-ea671744fb85</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="https://www.xiaocoder.com/2017/06/29/openstack-virtual-image/" target="_blank" rel="noopener">制作OpenStack云主机映像的指南</a><br>[2]. <a href="https://www.cnblogs.com/songfucai/articles/6710150.html" target="_blank" rel="noopener">KVM 安装windows XP 系统</a><br>[3]. <a href="http://zjzone.cc/index.php/2017/03/10/openstack-jing-xiang-zhi-zuo-zhi-window7/" target="_blank" rel="noopener">Openstack镜像制作之windows7篇</a><br>[4]. <a href="https://blog.csdn.net/happyteafriends/article/details/48159427" target="_blank" rel="noopener">为openstack制作windows镜像</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/openstack/" rel="tag"><i class="fa fa-tags"></i> openstack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/12/openstack1/" rel="next" title="openstack虚拟机鼠标指针问题">
+                <i class="fa fa-chevron-left"></i> openstack虚拟机鼠标指针问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MDYwOC8xNzEzNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Mr Wu" />
+            
+              <p class="site-author-name" itemprop="name">Mr Wu</p>
+              <p class="site-description motion-element" itemprop="description">守得云开见月明</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/crystalww" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作xp系统"><span class="nav-number">2.</span> <span class="nav-text">制作xp系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#win7系统制作"><span class="nav-number">3.</span> <span class="nav-text">win7系统制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#踩坑记录"><span class="nav-number">5.</span> <span class="nav-text">踩坑记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#镜像操作"><span class="nav-number">6.</span> <span class="nav-text">镜像操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
