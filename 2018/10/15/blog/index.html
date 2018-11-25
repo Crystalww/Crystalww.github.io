@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Crystalww">
 <meta property="og:description" content="准备工作Github创建个人仓库首先要有一个github账号，点击GitHub中的New repository创建新仓库，仓库名为：username.github.io。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-29T12:43:03.480Z">
+<meta property="og:updated_time" content="2018-11-25T13:54:01.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo搭建个人博客">
 <meta name="twitter:description" content="准备工作Github创建个人仓库首先要有一个github账号，点击GitHub中的New repository创建新仓库，仓库名为：username.github.io。">
@@ -352,9 +352,30 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/15/blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/2018/10/15/blog/" class="leancloud_visitors" data-flag-title="Hexo搭建个人博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -414,11 +435,24 @@
 <p>在站点的根目录下（MyBlog文件夹）执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure></p>
 <p>存放图片的目录名与文章名保持一致，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MacGesture2-Publish</span><br><span class="line">├── apppicker.jpg</span><br><span class="line">├── logo.jpg</span><br><span class="line">└── rules.jpg</span><br><span class="line">MacGesture2-Publish.md</span><br></pre></td></tr></table></figure></p>
 <p>使用 <code>![logo](logo.jpg)</code>就可以插入图片。</p>
-<h4 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h4><ul>
+<h4 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h4><p><strong>1.使用来必力评论系统</strong></p>
+<ul>
 <li>在<a href="https://livere.com" target="_blank" rel="noopener">来必力官网</a>注册一个账号，选择免费的city版本安装。 </li>
 <li>复制其中的uid字段。</li>
 <li>打开主题配置文件，定位到livere_uid字段，粘贴上刚刚复制的uid。</li>
-<li>修改<code>source/tags/index.md</code></li>
+<li>修改<code>source/tags/index.md</code><br>加入<code>comments: false</code>，否则标签和分类里面也会加载评论</li>
+</ul>
+<p><strong>2.使用valine</strong>（可以匿名评论）</p>
+<ul>
+<li>注册<a href="https://leancloud.cn/dashboard/login.html#/signup" target="_blank" rel="noopener">LeanCloud</a>账号</li>
+<li>创建应用：填写应用名、勾选<code>开发版</code></li>
+<li>进入设置页面查看App ID和App Key</li>
+<li><p>在leancloud存储中创建Class，命名为Counter。修改next/_config.yml中leancloud_visitors，配置阅读统计：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">leancloud_visitors:</span><br><span class="line">  enable: true 设置为true 默认为false</span><br><span class="line">  app_id:  #你的App ID</span><br><span class="line">  app_key:  #你的App Key</span><br><span class="line">  Dependencies:  https://github.com/theme-next/hexo-leancloud-counter-security #设置依赖</span><br><span class="line">  security: true #没有hexo-leancloud-counter-security插件，请将security设置为false</span><br><span class="line">  betterPerformance: true #更好的性能</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在leancloud存储中创建Class，命名为Comment。修改next/_config.yml中valine部分，配置评论设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true # 设置为true，默认为false</span><br><span class="line">  appid:  # 将应用key的App ID设置在这里</span><br><span class="line">  appkey: # 将应用key的App Key设置在这里</span><br><span class="line">  notify: true# 邮箱通知 , https://github.com/xCss/Valine/wiki，默认为false</span><br><span class="line">  verify: true# 验证码 默认为false</span><br><span class="line">  placeholder: Just go go ^_^ # 初始化评论显示</span><br><span class="line">  avatar: wavatar # 头像风格，默认为mm，可进入网址：https://valine.js.org/visitor.html查看头像设置</span><br><span class="line">  guest_info: nick,mail,link # 自定义评论标题</span><br><span class="line">  pageSize: 10 # 分页大小，10页就自动分页</span><br><span class="line">  visitor: true # 是否允许游客评论 ，进入官网查看设置：https://valine.js.org/visitor.html</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <h4 id="设置侧边栏社交"><a href="#设置侧边栏社交" class="headerlink" title="设置侧边栏社交"></a>设置侧边栏社交</h4><p>编辑主题配置文件，定位到字段<code>social</code>，然后添加社交站点名称与地址即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Social links</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/crystalww || github</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
 <p>编辑主题配置文件，在<code>social_icons</code>字段下添加社交站点名称（注意大小写）与图标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">social_icons:</span><br><span class="line">  enable: true</span><br><span class="line">  icons_only: false</span><br><span class="line">  transition: false</span><br><span class="line">  GitHub: github</span><br><span class="line">  Twitter: twitter</span><br><span class="line">  Weibo: weibo</span><br><span class="line">  Linkedin: linkedin</span><br></pre></td></tr></table></figure></p>
@@ -496,9 +530,7 @@
 
   
     <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC80MDYwOC8xNzEzNQ=="></div>
     </div>
-
   
 
 
@@ -795,26 +827,37 @@
 
 
   
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
-
-
-
-
-
-
-
-
-
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'FrLTb0OxTWCOQNmWKhodybXs-gzGzoHsz',
+        appKey: 'uPlr7Htj5A0tPYfOdQQ8NTl2',
+        placeholder: '欢迎评论 ^_^',
+        avatar:'wavatar',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
@@ -1142,6 +1185,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("FrLTb0OxTWCOQNmWKhodybXs-gzGzoHsz", "uPlr7Htj5A0tPYfOdQQ8NTl2");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
