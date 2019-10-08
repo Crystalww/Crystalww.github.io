@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="centos," />
+  <meta name="keywords" content="openstack," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="安装CentOS时使用了默认分区，结果发现root目录空间太小，创建虚拟机实例申请不到磁盘，在此记录如何调整CentOS root目录的大小。">
-<meta name="keywords" content="centos">
+<meta name="description" content="openstack（Ocata）创建实例，如果是windows系统，桌面会出现两个鼠标，操作不便。原因在于鼠标驱动程序为PS/2兼容鼠标，而实际使用的是usb鼠标。">
+<meta name="keywords" content="openstack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="调整CentOS根目录大小">
-<meta property="og:url" content="http://yoursite.com/2018/11/09/resize/index.html">
+<meta property="og:title" content="openstack虚拟机鼠标指针问题">
+<meta property="og:url" content="http://yoursite.com/2018/11/12/openstack虚拟机鼠标指针问题/index.html">
 <meta property="og:site_name" content="Crystalww">
-<meta property="og:description" content="安装CentOS时使用了默认分区，结果发现root目录空间太小，创建虚拟机实例申请不到磁盘，在此记录如何调整CentOS root目录的大小。">
+<meta property="og:description" content="openstack（Ocata）创建实例，如果是windows系统，桌面会出现两个鼠标，操作不便。原因在于鼠标驱动程序为PS/2兼容鼠标，而实际使用的是usb鼠标。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-25T13:44:26.212Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/12/openstack虚拟机鼠标指针问题/image1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/12/openstack虚拟机鼠标指针问题/image2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/12/openstack虚拟机鼠标指针问题/usbtablet.png">
+<meta property="og:updated_time" content="2019-10-08T13:30:41.382Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="调整CentOS根目录大小">
-<meta name="twitter:description" content="安装CentOS时使用了默认分区，结果发现root目录空间太小，创建虚拟机实例申请不到磁盘，在此记录如何调整CentOS root目录的大小。">
+<meta name="twitter:title" content="openstack虚拟机鼠标指针问题">
+<meta name="twitter:description" content="openstack（Ocata）创建实例，如果是windows系统，桌面会出现两个鼠标，操作不便。原因在于鼠标驱动程序为PS/2兼容鼠标，而实际使用的是usb鼠标。">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/12/openstack虚拟机鼠标指针问题/image1.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/09/resize/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/12/openstack虚拟机鼠标指针问题/"/>
 
 
 
 
 
-  <title>调整CentOS根目录大小 | Crystalww</title>
+  <title>openstack虚拟机鼠标指针问题 | Crystalww</title>
   
 
 
@@ -287,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/resize/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/openstack虚拟机鼠标指针问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr Wu">
@@ -304,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">调整CentOS根目录大小</h1>
+          <h1 class="post-title" itemprop="name headline">openstack虚拟机鼠标指针问题</h1>
         
 
         <div class="post-meta">
@@ -316,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T11:24:19+08:00">
-                2018-11-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T18:30:10+08:00">
+                2018-11-12
               </time>
             
 
@@ -339,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/OpenStack/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenStack</span>
                   </a>
                 </span>
 
@@ -357,8 +361,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/09/resize/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/09/resize/" itemprop="commentCount"></span>
+                <a href="/2018/11/12/openstack虚拟机鼠标指针问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/12/openstack虚拟机鼠标指针问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -366,7 +370,7 @@
 
           
           
-             <span id="/2018/11/09/resize/" class="leancloud_visitors" data-flag-title="调整CentOS根目录大小">
+             <span id="/2018/11/12/openstack虚拟机鼠标指针问题/" class="leancloud_visitors" data-flag-title="openstack虚拟机鼠标指针问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -397,28 +401,35 @@
       
 
       
-        <p>安装CentOS时使用了默认分区，结果发现root目录空间太小，创建虚拟机实例申请不到磁盘，在此记录如何调整CentOS root目录的大小。<br><a id="more"></a></p>
+        <p>openstack（Ocata）创建实例，如果是windows系统，桌面会出现两个鼠标，操作不便。原因在于鼠标驱动程序为<code>PS/2兼容鼠标</code>，而实际使用的是<code>usb鼠标</code>。<br><a id="more"></a><br>因为我是用kolla部署的openstack，配置文件与手动安装方式相比略有不同。查阅相关资料，主要有以下几种解决方法：</p>
 <ol>
-<li><p>查看分区</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@centos centos]# df -h</span><br><span class="line">Filesystem               Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/mapper/centos-root   50G   23G   28G  46% /</span><br><span class="line">devtmpfs                  16G     0   16G   0% /dev</span><br><span class="line">tmpfs                     16G     0   16G   0% /dev/shm</span><br><span class="line">tmpfs                     16G   21M   16G   1% /run</span><br><span class="line">tmpfs                     16G     0   16G   0% /sys/fs/cgroup</span><br><span class="line">/dev/sda1               1014M  222M  793M  22% /boot</span><br><span class="line">/dev/mapper/centos-home  857G   37M  856G   1% /home</span><br><span class="line">tmpfs                    3.2G   12K  3.2G   1% /run/user/42</span><br></pre></td></tr></table></figure>
+<li><p>直接修改镜像，附加属性，再用该镜像生成虚拟机。用kolla部署的话，需要在deploy上操作，安装openstack cli client相关依赖（见上一篇）。<br><code>openstack image set  --property hw_pointer_model=usbtablet 927e8608-768f-4415-871b-0fc2cce79a14</code> 最后一个参数为镜像id<br><img src="/2018/11/12/openstack虚拟机鼠标指针问题/image1.png" alt="image1"><br>修改之后如下<br><img src="/2018/11/12/openstack虚拟机鼠标指针问题/image2.png" alt="image2"><br>然后创建虚拟机，发现问题并没有解决~~~</p>
 </li>
-<li><p>备份home分区文件<br><code>[root@centos ~]# tar cvf /tmp/home.tar /home</code><br><strong>注意检查是否备份成功</strong></p>
+<li><p>直接修改虚拟机配置文件<br>先创建一个实例（虚拟机），虚拟机配置文件一般存放在libvirt的qemu文件夹下，是创建虚拟机的时候自动生成的，如<code>/etc/libvirt/qemu/instance-00000005.xml</code>。</p>
 </li>
-<li><p>卸载/home目录<br>终止使用/home文件系统的进程，再卸载。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]# fuser -km /home</span><br><span class="line"></span><br><span class="line">[root@centos ~]# umount /home</span><br><span class="line"></span><br><span class="line">[root@centos ~]# df -h</span><br></pre></td></tr></table></figure>
+</ol>
+<ul>
+<li>进入nova_libvirt容器<br><code>[root@centos ~]# docker exec -itu root nova_libvirt /bin/bash</code></li>
+<li><p>修改虚拟机配置文件<br><code>(nova-libvirt)[root@centos /]# vi /etc/libvirt/qemu/instance-00000005.xml</code><br>定位到<code>&lt;input&gt;</code>标签，在前面添加<code>&lt;input type=&#39;tablet&#39; bus=&#39;usb&#39;/&gt;</code>，保存的时候你会发现报错：<code>&quot;internal error: No free USB ports&quot;</code>。<br>对比手动安装的，应该要添加的语句如下，然后删掉<code>&lt;input type=&#39;mouse&#39; bus=&#39;ps2&#39;/&gt;</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&apos;tablet&apos; bus=&apos;usb&apos;&gt;</span><br><span class="line">      &lt;address type=&apos;usb&apos; bus=&apos;0&apos; port=&apos;1&apos;/&gt;</span><br><span class="line">&lt;/input&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>删除/home所在的lv<br><code>[root@centos ~]# lvremove /dev/mapper/centos-home</code></p>
+<li><p>保存配置后重启容器<br><code>[root@centos ~]# docker restart nova_libvirt</code><br>软重启实例，然后鼠标正常了。但是这样有个缺点，每次创建都要改配置文件非常麻烦，而且配置文件也不建议修改（动态生成，会被覆盖掉）。</p>
 </li>
-<li><p>查看空闲磁盘大小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]# vgdisplay </span><br><span class="line">  --- Volume group ---</span><br><span class="line">  VG Name               centos</span><br><span class="line">  System ID             </span><br><span class="line">  Format                lvm2</span><br><span class="line">  Metadata Areas        1</span><br><span class="line">  Metadata Sequence No  5</span><br><span class="line">  VG Access             read/write</span><br><span class="line">  VG Status             resizable</span><br><span class="line">  MAX LV                0</span><br><span class="line">  Cur LV                2</span><br><span class="line">  Open LV               2</span><br><span class="line">  Max PV                0</span><br><span class="line">  Cur PV                1</span><br><span class="line">  Act PV                1</span><br><span class="line">  VG Size               &lt;930.00 GiB</span><br><span class="line">  PE Size               4.00 MiB</span><br><span class="line">  Total PE              238079</span><br><span class="line">  Alloc PE / Size       18832 / 73.56 GiB</span><br><span class="line">  Free  PE / Size       219247 / 856.43 GiB</span><br><span class="line">  VG UUID               zNMW93-KFCC-qpQB-Txho-d86c-6Rh7-wSU7dK</span><br></pre></td></tr></table></figure>
+</ul>
+<ol start="3">
+<li>修改nova配置文件（推荐）</li>
+</ol>
+<ul>
+<li><p>修改/etc/kolla/nova-compute/nova.conf文件<br>在<code>[DEFAULT]</code>下添加<code>pointer_model = usbtablet</code><br><a href="https://docs.openstack.org/ocata/config-reference/compute/config-options.html" target="_blank" rel="noopener">官方文档</a>中有这么一段话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usbtablet must be configured with VNC enabled or SPICE enabled and SPICE agent disabled. When used with libvirt the instance mode should be configured as HVM.</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>扩展/root所在的lv<br><code>[root@centos ~]# lvextend -L +800G /dev/mapper/centos-root</code></p>
+<li><p>在<code>[spice]</code>下添加<code>agent_enabled=false</code>。<br>忽略这一步导致浪费了很多时间啊！！！<br><img src="/2018/11/12/openstack虚拟机鼠标指针问题/usbtablet.png" alt="usbtablet"></p>
 </li>
-<li>扩展/root文件系统<br><code>[root@centos ~]# xfs_growfs /dev/mapper/centos-root</code><br>再次<code>df -h</code>可以看到/root大小已经改变了</li>
-<li>重新创建home lv<br><code>[root@centos ~]# lvcreate -L 56.43GiB -n /dev/mapper/centos-home</code></li>
-<li>创建文件系统<br><code>[root@centos ~]# mkfs.xfs /dev/mapper/centos-home</code></li>
-<li>挂载home<br><code>mount /dev/mapper/centos-home</code></li>
-<li>home文件恢复<br><code>[root@centos /]# tar xvf /tmp/home.tar -C ./</code></li>
+<li>重启nova_compute容器<br><code>[root@centos ~]# docker restart nova_compute</code></li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://blog.csdn.net/oLinBSoft/article/details/80320322" target="_blank" rel="noopener">openstack 填坑笔记4：windows 实例运行出现两个鼠标，重影难于对焦</a></li>
+<li><a href="https://bugs.launchpad.net/nova/+bug/1356633" target="_blank" rel="noopener">use_usb_tablet=true have no effect</a></li>
 </ol>
 
       
@@ -437,7 +448,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/centos/" rel="tag"><i class="fa fa-tags"></i> centos</a>
+            <a href="/tags/openstack/" rel="tag"><i class="fa fa-tags"></i> openstack</a>
           
         </div>
       
@@ -450,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/31/docker/" rel="next" title="搭建docker仓库">
-                <i class="fa fa-chevron-left"></i> 搭建docker仓库
+              <a href="/2018/11/09/调整CentOS根目录大小/" rel="next" title="调整CentOS根目录大小">
+                <i class="fa fa-chevron-left"></i> 调整CentOS根目录大小
               </a>
             
           </div>
@@ -460,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/12/openstack1/" rel="prev" title="openstack虚拟机鼠标指针问题">
-                openstack虚拟机鼠标指针问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/14/openstack镜像操作/" rel="prev" title="openstack镜像操作">
+                openstack镜像操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -517,8 +528,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -537,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -548,7 +568,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -593,6 +613,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -606,7 +642,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

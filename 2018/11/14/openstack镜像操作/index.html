@@ -83,16 +83,16 @@
 <meta name="keywords" content="openstack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="openstack镜像操作">
-<meta property="og:url" content="http://yoursite.com/2018/11/14/openstack2/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/14/openstack镜像操作/index.html">
 <meta property="og:site_name" content="Crystalww">
 <meta property="og:description" content="在部署好openstack后需要镜像来创建实例，CentOS、Ubuntu等系统有官方维护的镜像，windows系统的镜像则需要自己制作。下面是我在CentOS7上制作XP系统和win7系统的记录。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/11/14/openstack2/xp.png">
-<meta property="og:updated_time" content="2018-11-19T13:58:21.642Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/14/openstack镜像操作/xp.png">
+<meta property="og:updated_time" content="2019-10-08T13:30:56.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="openstack镜像操作">
 <meta name="twitter:description" content="在部署好openstack后需要镜像来创建实例，CentOS、Ubuntu等系统有官方维护的镜像，windows系统的镜像则需要自己制作。下面是我在CentOS7上制作XP系统和win7系统的记录。">
-<meta name="twitter:image" content="http://yoursite.com/2018/11/14/openstack2/xp.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/14/openstack镜像操作/xp.png">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/14/openstack2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/14/openstack镜像操作/"/>
 
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/openstack2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/openstack镜像操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr Wu">
@@ -359,8 +359,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/14/openstack2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/14/openstack2/" itemprop="commentCount"></span>
+                <a href="/2018/11/14/openstack镜像操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/14/openstack镜像操作/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -368,7 +368,7 @@
 
           
           
-             <span id="/2018/11/14/openstack2/" class="leancloud_visitors" data-flag-title="openstack镜像操作">
+             <span id="/2018/11/14/openstack镜像操作/" class="leancloud_visitors" data-flag-title="openstack镜像操作">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -441,7 +441,7 @@
 </ul>
 <p>如果centos是图形界面的，也可以用virt-manager和virt-viewer来安装系统。下面的命令也可用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 若本机不支持虚拟化，请将virt-type选项更改为qemu</span><br><span class="line">[root@ocata libvirt]# virt-install --virt-type kvm \</span><br><span class="line">--name winxp --ram 2048 --vcpus 2 \</span><br><span class="line">--network network=default,model=virtio \</span><br><span class="line">--disk path=images/virtual/winxp.qcow2,format=qcow2,device=disk,bus=virtio \</span><br><span class="line">--disk path=images/iso/virtio-win-0.1.126_x86.vfd,device=floppy \</span><br><span class="line">--disk path=images/iso/zh-hans_windows_xp_professional_with_service_pack_3_x86_cd_x14-80404.iso,device=cdrom \</span><br><span class="line">--disk path=images/iso/virtio-win-0.1.141.iso,device=cdrom \</span><br><span class="line">--os-type=windows --os-variant=winxp \</span><br><span class="line">--graphics vnc,listen=0.0.0.0 --noautoconsole</span><br></pre></td></tr></table></figure></p>
 <p>安装过程可能会重启，我的关机之后没有自己启动，需要手动开启，再用VNC Viewer连接。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@ocata libvirt]# virsh list --all</span><br><span class="line"> Id    名称                         状态</span><br><span class="line">----------------------------------------------------</span><br><span class="line"> -     winxp                          关闭</span><br><span class="line"></span><br><span class="line">[root@ocata libvirt]# virsh start winxp</span><br><span class="line">域 winxp 已开</span><br></pre></td></tr></table></figure></p>
-<p>安装完成进入计算机管理把驱动程序安装好，选择驱动程序镜像所在盘自动安装即可。<br><img src="/2018/11/14/openstack2/xp.png" alt="xp"><br>下一步就是安装<a href="https://cloudbase.it/cloudbase-init/" target="_blank" rel="noopener">cloudbase-init</a>，问题是怎么把文件传入到winxp系统中，可以参考<a href="https://www.jianshu.com/p/c154f43b7fac" target="_blank" rel="noopener">虚拟机镜像管理工具– Libguestfs</a>。<br>但是centos7中guestmount已经不支持NTFS的镜像了<a href="https://forums.urbackup.org/t/mount-image-is-not-working-under-rhel-7-3/3127/2" target="_blank" rel="noopener">(mount: unsupported filesystem type” with NTFS in RHEL ≥ 7.2)</a>。也可以在xp系统中上网下载，但是IE半天打不开网页，给换了世界之窗的浏览器。<br>打开IE–&gt;工具–&gt;Internet选项–&gt;高级–&gt;勾选使用TLS1.0。然后输入世界之窗浏览器的网址下载。</p>
+<p>安装完成进入计算机管理把驱动程序安装好，选择驱动程序镜像所在盘自动安装即可。<br><img src="/2018/11/14/openstack镜像操作/xp.png" alt="xp"><br>下一步就是安装<a href="https://cloudbase.it/cloudbase-init/" target="_blank" rel="noopener">cloudbase-init</a>，问题是怎么把文件传入到winxp系统中，可以参考<a href="https://www.jianshu.com/p/c154f43b7fac" target="_blank" rel="noopener">虚拟机镜像管理工具– Libguestfs</a>。<br>但是centos7中guestmount已经不支持NTFS的镜像了<a href="https://forums.urbackup.org/t/mount-image-is-not-working-under-rhel-7-3/3127/2" target="_blank" rel="noopener">(mount: unsupported filesystem type” with NTFS in RHEL ≥ 7.2)</a>。也可以在xp系统中上网下载，但是IE半天打不开网页，给换了世界之窗的浏览器。<br>打开IE–&gt;工具–&gt;Internet选项–&gt;高级–&gt;勾选使用TLS1.0。然后输入世界之窗浏览器的网址下载。</p>
 <blockquote>
 <p>安装过程中选项：<br>Username：Administrator；<br>Serial port for logging：COM1；<br>勾选Run Cloudbase-init service as LocalSystem；<br>耐心等待安装完成</p>
 </blockquote>
@@ -521,7 +521,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/12/openstack1/" rel="next" title="openstack虚拟机鼠标指针问题">
+              <a href="/2018/11/12/openstack虚拟机鼠标指针问题/" rel="next" title="openstack虚拟机鼠标指针问题">
                 <i class="fa fa-chevron-left"></i> openstack虚拟机鼠标指针问题
               </a>
             
@@ -530,6 +530,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/openstack使用过程遇到的问题/" rel="prev" title="openstack使用过程遇到的问题">
+                openstack使用过程遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -613,7 +617,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +628,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -698,7 +702,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
