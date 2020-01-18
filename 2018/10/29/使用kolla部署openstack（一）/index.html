@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="openstack,centos,kolla," />
+  <meta name="keywords" content="centos,openstack,kolla," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="实验环境最近在折腾kolla部署容器化的openstack，遇到的坑实在是太多了，在虚拟机中把可能遇到的问题都查了一遍才敢部署到物理机上。但还是没搞明白为什么虚拟机中virt_type只能为qemu才可以创建instance。有兴趣的建议先在VMware Workstation中尝试">
-<meta name="keywords" content="openstack,centos,kolla">
+<meta name="keywords" content="centos,openstack,kolla">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用kolla部署openstack（一）">
 <meta property="og:url" content="http://yoursite.com/2018/10/29/使用kolla部署openstack（一）/index.html">
@@ -88,7 +88,7 @@
 <meta property="og:description" content="实验环境最近在折腾kolla部署容器化的openstack，遇到的坑实在是太多了，在虚拟机中把可能遇到的问题都查了一遍才敢部署到物理机上。但还是没搞明白为什么虚拟机中virt_type只能为qemu才可以创建instance。有兴趣的建议先在VMware Workstation中尝试">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/10/29/使用kolla部署openstack（一）/cinder.png">
-<meta property="og:updated_time" content="2019-10-08T13:22:07.462Z">
+<meta property="og:updated_time" content="2019-10-31T06:10:52.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用kolla部署openstack（一）">
 <meta name="twitter:description" content="实验环境最近在折腾kolla部署容器化的openstack，遇到的坑实在是太多了，在虚拟机中把可能遇到的问题都查了一遍才敢部署到物理机上。但还是没搞明白为什么虚拟机中virt_type只能为qemu才可以创建instance。有兴趣的建议先在VMware Workstation中尝试">
@@ -428,7 +428,7 @@
 <p>./kolla-ansible/tools/generate_passwords.py</p>
 </blockquote>
 <p>修改/etc/kolla/globals.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">kolla_base_distro: &quot;centos&quot;</span><br><span class="line">kolla_install_type: &quot;source&quot;</span><br><span class="line">openstack_release: &quot;rocky&quot;       # openstack_release版本与你clone的kolla和kolla-ansible的版本对应</span><br><span class="line">network_interface: &quot;eth0&quot;        # 内网</span><br><span class="line">neutron_external_interface: &quot;eth1&quot;  # 外网</span><br><span class="line">kolla_internal_vip_address: &quot;内网ip&quot;   # 确保ip未被占用，这也是用于访问horizon的ip</span><br><span class="line">nova_console: &quot;spice&quot;</span><br><span class="line">enable_horizon: &quot;yes&quot;</span><br><span class="line">nova_compute_virt_type: &quot;kvm&quot;  # 如果是虚拟机，只能用qemu代替kvm，否则实例启动会卡在：Booting from Hard Disk...</span><br><span class="line">docker_registry: &quot;ip:port&quot;     # 如果有私有docker仓库，部署过程会更快</span><br><span class="line"></span><br><span class="line">enable_cinder: &quot;yes&quot;           # 块存储，这里还不怎么懂！！！</span><br><span class="line">enable_cinder_backend_lvm: &quot;yes&quot;</span><br><span class="line"></span><br><span class="line"># 如果要安装ceilometer、aodh、gnocchi，需要修改下面这部分</span><br><span class="line">enable_aodh: &quot;yes&quot;</span><br><span class="line">enable_ceilometer: &quot;yes&quot;</span><br><span class="line">enable_ceph: &quot;no&quot;</span><br><span class="line">enable_gnocchi: &quot;yes&quot;</span><br><span class="line">ceilometer_database_type: &quot;gnocchi&quot;</span><br><span class="line">ceilometer_event_type: &quot;gnocchi&quot;</span><br><span class="line">gnocchi_backend_storage: &quot;&#123;&#123; &apos;ceph&apos; if enable_ceph|bool else &apos;file&apos; &#125;&#125;&quot;</span><br><span class="line"></span><br><span class="line"># 如果要安装mistral，需要修改下面这部分</span><br><span class="line">enable_horizon_mistral: &quot;&#123;&#123; enable_mistral | bool &#125;&#125;&quot;</span><br><span class="line">enable_mistral: &quot;yes&quot;</span><br></pre></td></tr></table></figure></p>
-<p>在下面Bootstrap servers步骤后，修改被部署openstack机器上/etc/docker/daemon.json，并重启docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;],</span><br><span class="line">  &quot;insecure-registries&quot;: [&quot;192.168.89.149:5000&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>在下面Bootstrap servers步骤后</strong>，修改被部署openstack机器上/etc/docker/daemon.json，并重启docker<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;],</span><br><span class="line">  &quot;insecure-registries&quot;: [&quot;192.168.89.149:5000&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 1. Bootstrap servers with kolla deploy dependencies</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i multinode bootstrap-servers</span><br><span class="line"></span><br><span class="line"># 2. 对主机进行部署前检查（kolla_internal_vip_address如果被占用会失败）</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i multinode prechecks</span><br><span class="line"></span><br><span class="line"># 3. 进行openstack部署</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i multinode deploy</span><br><span class="line"></span><br><span class="line"># 4. 如果部署失败，销毁失败的部署</span><br><span class="line">./kolla-ansible/tools/kolla-ansible -i &lt;&lt;inventory-file&gt;&gt; destroy</span><br></pre></td></tr></table></figure>
 <p>部署成功后输入虚拟ip地址即可进入dashboard。</p>
@@ -439,8 +439,11 @@
 </ul>
 <hr>
 <h2 id="kolla部署OpenStack-Ocata版本注意事项"><a href="#kolla部署OpenStack-Ocata版本注意事项" class="headerlink" title="kolla部署OpenStack Ocata版本注意事项"></a>kolla部署OpenStack Ocata版本注意事项</h2><ul>
-<li>安装完后需要在/etc/kolla/nova-compute/nova.conf中<code>[libvirt]</code>下添加<code>virt_type = qemu</code>。</li>
-<li>确保selinux关闭，否则部署完成实例创建失败</li>
+<li><p>安装完后需要在/etc/kolla/nova-compute/nova.conf中<code>[libvirt]</code>下添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 或者部署前在 /root/kolla-ansible/ansible/roles/nova/templates/nova.conf.j2 里修改？</span><br><span class="line">virt_type = qemu</span><br><span class="line">inject_password=True</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>确保selinux关闭，否则部署完成实例创建失败</p>
+</li>
 <li><p>修改kolla-ansible/ansible/roles/haproxy/tasks/precheck.yml中的<code>always_run: True</code>为<code>run_once: true</code>，否则报错：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TASK [haproxy : include] *************************************************************************************</span><br><span class="line">fatal: [vmc]: FAILED! =&gt; &#123;&quot;reason&quot;: &quot;&apos;always_run&apos; is not a valid attribute for a Task\n\nThe error appears to have been in &apos;/root/kolla-ansible/ansible/roles/haproxy/tasks/precheck.yml&apos;: line 9, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Clearing temp kolla_keepalived_running file\n  ^ here\n\nThis error can be suppressed as a warning using the \&quot;invalid_task_attribute_failed\&quot; configuration&quot;&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -536,9 +539,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/openstack/" rel="tag"><i class="fa fa-tags"></i> openstack</a>
-          
             <a href="/tags/centos/" rel="tag"><i class="fa fa-tags"></i> centos</a>
+          
+            <a href="/tags/openstack/" rel="tag"><i class="fa fa-tags"></i> openstack</a>
           
             <a href="/tags/kolla/" rel="tag"><i class="fa fa-tags"></i> kolla</a>
           
@@ -734,7 +737,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
